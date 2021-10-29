@@ -10,28 +10,29 @@ import { Item } from "../../types/Item";
 export class DataForm implements OnInit {
   @Output() onItemAdded: EventEmitter<Item> = new EventEmitter<Item>();
   type = null;
-  dataForm = new FormGroup({
-    name: new FormControl("", Validators.required),
-    genre: new FormControl("", Validators.required),
-    creator: new FormControl("", Validators.required),
-    type: new FormControl("", Validators.required),
-    totalTime: new FormControl(""),
-  });
+  name: string;
+  genre: string;
+  creator: string;
+  totalTime: number;
 
   ngOnInit() {}
 
-  selectItemType(type: string) {
-    this.dataForm.patchValue({ type });
-    if (type === "Book") {
-      this.dataForm.patchValue({ totalTime: "" });
-    }
+  onSubmit() {
+    const { type, name, genre, creator, totalTime } = this;
+    this.onItemAdded.emit({
+      type,
+      name,
+      genre,
+      creator,
+      totalTime,
+    });
+
+    this.type = null;
+    this.name = "";
+    this.genre = "";
+    this.creator = "";
+    this.totalTime = null;
   }
 
-  onSubmit() {
-    if (this.dataForm.valid) {
-      this.onItemAdded.emit(this.dataForm.value);
-      this.dataForm.reset();
-      this.type = null;
-    }
-  }
+  selectType() {}
 }

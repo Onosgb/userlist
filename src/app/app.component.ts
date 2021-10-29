@@ -25,9 +25,9 @@ export class AppComponent {
 
   onItemDelete(item: Item) {
     if (item.type === this.Song) {
-      this.songs = this.songs.filter((item) => item.type !== this.Song);
+      this.songs = this.songs.filter((s) => s.name !== item.name);
     } else if (item.type === this.Book) {
-      this.books = this.books.filter((item) => item.type !== this.Book);
+      this.books = this.books.filter((s) => s.name !== item.name);
     }
   }
 }

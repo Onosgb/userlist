@@ -20,7 +20,7 @@
         <td *ngIf="dataType === 'Song'">
           <div class="layout-row align-items-center">
             <i class="play material-icons mr-4">play_circle_outline</i>
-            <span data-test-id="item-time">{{item.time}}</span>
+            <span data-test-id="item-time">{{item.totalTime}}</span>
           </div>
           </td>
         <td><button class="icon-only mx-2" data-test-id="item-delete" (click)="deleteItem(item)"><i class="delete material-icons">delete</i></button></td>
